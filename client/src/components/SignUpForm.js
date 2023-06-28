@@ -62,6 +62,9 @@ function SignUpForm({ onLogin }) {
           autoComplete="current-password"
         />
         <button type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
+        <div>
+            
+        </div>
     </form>
   );
 }

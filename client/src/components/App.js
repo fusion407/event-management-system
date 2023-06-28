@@ -6,7 +6,7 @@ import BrowseEvents from "../pages/BrowseEvents";
 import NewEvent from "../pages/NewEvent";
 import Profile from "../pages/Profile";
 import NavBar from "./NavBar";
-import Home from "./Home";
+import Home from "../pages/Home";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,6 +20,10 @@ function App() {
     });
   }, []);
 
+  function onAddEvent() {
+    console.log("add event")
+  }
+
   return (
     <>
       <NavBar user={user} setUser={setUser} />
@@ -27,7 +31,7 @@ function App() {
         {user ? (
           <Switch>
             <Route path="/events/new">
-              <NewEvent user={user}/>
+              <NewEvent user={user} onAddEvent={onAddEvent}/>
             </Route>
             <Route path="/profile">
               <Profile user={user}/>

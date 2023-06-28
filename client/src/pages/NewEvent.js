@@ -1,7 +1,9 @@
-function NewEvent({ user }) {
+import NewEventForm from "../components/NewEventForm"
+
+function NewEvent({ user, onAddEvent }) {
     return(
         <div>
-            <h1>hello new events</h1>
+            <NewEventForm user={user} onAddEvent={onAddEvent}/>
         </div>
     )
   }

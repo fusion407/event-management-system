@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import LoginForm from "../components/LoginForm"
 
 function Login({ setUser }) {
 
   return (
     <div>
-      <LoginForm 
-        onLogin={setUser}
-        />
+      <LoginForm onLogin={setUser}/>
     </div>
   );
 }

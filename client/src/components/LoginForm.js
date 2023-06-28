@@ -24,6 +24,7 @@ function LoginForm({ onLogin }) {
         history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));
+        alert("Incorrect username or password.")
       }
     });
   }
