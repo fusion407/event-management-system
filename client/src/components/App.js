@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Switch ,Route } from 'react-router-dom';
-import SignUp from "./SignUp";
-import Login from "./Login";
-import BrowseEvents from "./BrowseEvents";
-import NewEvent from "./NewEvent";
+import SignUp from "../pages/SignUp";
+import Login from "../pages/Login";
+import BrowseEvents from "../pages/BrowseEvents";
+import NewEvent from "../pages/NewEvent";
+import Profile from "../pages/Profile";
 import NavBar from "./NavBar";
-import Profile from "./Profile";
 import Home from "./Home";
 
 function App() {

@@ -1,36 +1,36 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function SignUp({ setUser }) {
+function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   let history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/signup", {
+    setIsLoading(true);
+    fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        username,
-        password,
-        password_confirmation: passwordConfirmation,
-      }),
+      body: JSON.stringify({ username, password }),
     }).then((r) => {
+      setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => onLogin(user));
         history.push("/");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
       }
     });
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+    <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -43,22 +43,13 @@ function SignUp({ setUser }) {
         <input
           type="password"
           id="password"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
         />
-        <label htmlFor="password">Password Confirmation</label>
-        <input
-          type="password"
-          id="password_confirmation"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          autoComplete="current-password"
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+        <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+    </form>
   );
 }
 
-export default SignUp;
+export default LoginForm;
