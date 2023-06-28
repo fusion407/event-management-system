@@ -14,10 +14,15 @@ function NavBar({ user, setUser }) {
     <header>
       <div>
         <Link to="/">Home</Link>
+        <Link to="/events">Browse Events</Link>
+        <Link to="/events/new">New Event</Link>
       </div>
       <div>
         {user ? (
-          <button onClick={handleLogoutClick}>Logout</button>
+          <>
+            <Link to="/profile">Profile</Link>
+            <button onClick={handleLogoutClick}>Logout</button>
+          </>
         ) : (
           <>
             <Link to="/signup">Signup</Link>

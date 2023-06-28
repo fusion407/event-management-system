@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Switch ,Route } from 'react-router-dom';
 import SignUp from "./SignUp";
 import Login from "./Login";
+import BrowseEvents from "./BrowseEvents";
+import NewEvent from "./NewEvent";
 import NavBar from "./NavBar";
+import Profile from "./Profile";
 import Home from "./Home";
 
 function App() {
@@ -23,6 +26,15 @@ function App() {
       <main>
         {user ? (
           <Switch>
+            <Route path="/events/new">
+              <NewEvent user={user}/>
+            </Route>
+            <Route path="/profile">
+              <Profile user={user}/>
+            </Route>
+            <Route path="/events">
+              <BrowseEvents user={user}/>
+            </Route>
             <Route path="/">
               <Home user={user}/>
             </Route>
