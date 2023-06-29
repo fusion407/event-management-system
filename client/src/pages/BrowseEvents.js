@@ -1,8 +1,9 @@
+import AllEventsList from "../components/AllEventsList"
 
-function BrowseEvents({ user }) {
+function BrowseEvents({ user, events }) {
     return(
         <div>
-            <h1>hello events</h1>
+            <AllEventsList user={user} events={events}/>
         </div>
     )
   }

@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [events, setEvents] = useState();
 
   useEffect(() => {
     // auto-login
@@ -19,10 +20,14 @@ function App() {
       }
     });
   }, []);
-
-  function onAddEvent() {
-    console.log("add event")
-  }
+  useEffect(() => {
+    // load events
+    fetch("/events").then((r) => {
+      if (r.ok) {
+        r.json().then((event) => setEvents(event));
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -31,13 +36,13 @@ function App() {
         {user ? (
           <Switch>
             <Route path="/events/new">
-              <NewEvent user={user} onAddEvent={onAddEvent}/>
+              <NewEvent user={user} onAddEvent={(e) => setEvents([...events, e])}/>
             </Route>
             <Route path="/profile">
               <Profile user={user}/>
             </Route>
             <Route path="/events">
-              <BrowseEvents user={user}/>
+              <BrowseEvents user={user} events={events}/>
             </Route>
             <Route path="/">
               <Home user={user}/>
