@@ -2,7 +2,7 @@ import {useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import ShowEventItem from '../components/ShowEventItem'
 
-function ShowEvent({selectedEvent, setSelectedEvent}) {
+function ShowEvent({selectedEvent, setSelectedEvent, onRegisterEvent}) {
     const params = useParams();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ function ShowEvent({selectedEvent, setSelectedEvent}) {
 
 
     return(
-        <div>{selectedEvent ? <ShowEventItem selectedEvent={selectedEvent}/> : "loading..."}</div>
+        <div>{selectedEvent ? <ShowEventItem selectedEvent={selectedEvent} onRegisterEvent={onRegisterEvent}/> : "loading..."}</div>
     )
 }
 

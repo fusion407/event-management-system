@@ -16,6 +16,11 @@ class EventsController < ApplicationController
         render json: event
     end
 
+    def showEventsRegistrations
+        registrations = Event.find_by(id: params[:id]).registrations
+        render json: registrations
+    end
+
     def update
         event = Event.find_by(id: params[:id])
         event.update(event_params)

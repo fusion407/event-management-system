@@ -9,13 +9,8 @@ function AllEventsItem(props) {
         location, 
         start_date, 
         end_date, 
-        created_by,
+        created_by
     } = props
-
-    function handleViewEvent(e) {
-        e.preventDefault()
-        console.log("id: " + id)
-    }
     
     
     return(
@@ -27,9 +22,6 @@ function AllEventsItem(props) {
             <p>Event created by: {created_by}</p>
             <div>
                 <Link to={`/events/${id}`}>View Event</Link>
-            </div>
-            <div>
-                <button>Register</button>
             </div>
         </div>
     )

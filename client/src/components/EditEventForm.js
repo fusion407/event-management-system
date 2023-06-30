@@ -14,7 +14,6 @@ function EditEventForm({selectedEvent, setSelectedEvent, onEditEvent, events, se
 
     function onEditEvent(updatedEvent){
         setSelectedEvent(updatedEvent)
-        console.log(updatedEvent)
         const updateEvent = events.map((event) =>
             event.id === updatedEvent.id ? updatedEvent : event
         );

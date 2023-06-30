@@ -13,7 +13,9 @@ import Home from "../pages/Home";
 function App() {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
+  const [errors, setErrors] = useState();
   const [selectedEvent, setSelectedEvent] = useState()
+  const [newRegistration, setNewRegistration] = useState()
 
   useEffect(() => {
     // auto-login
@@ -32,6 +34,25 @@ function App() {
     });
   }, []);
 
+  function onRegisterEvent(e) {
+    e.preventDefault()
+    fetch("/registrations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        user_id: user.id, 
+        event_id: selectedEvent.id,
+     }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((reg) => setNewRegistration(reg));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });  }
+  console.log(newRegistration)
   return (
     <>
       <NavBar user={user} setUser={setUser} />
@@ -45,7 +66,7 @@ function App() {
               <EditEvent selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} events={events} setEvents={setEvents}/>
             </Route>
             <Route path="/events/:id">
-              <ShowEvent selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent}/>
+              <ShowEvent onRegisterEvent={onRegisterEvent} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent}/>
             </Route>
 
             <Route path="/profile">

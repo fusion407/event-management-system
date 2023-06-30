@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ShowEventItem({selectedEvent}) {
+function ShowEventItem({selectedEvent, onRegisterEvent}) {
 
     const {
         id,
@@ -9,7 +9,7 @@ function ShowEventItem({selectedEvent}) {
         location,
         start_date,
         end_date,
-        created_by
+        created_by,
     } = selectedEvent
 
 
@@ -24,7 +24,7 @@ function ShowEventItem({selectedEvent}) {
                 <Link to={`/events/${id}/edit`}>Edit Event</Link>
             </div>
             <div>
-                <button>Register</button>
+                <button onClick={onRegisterEvent}>Register</button>
             </div>
         </div>
     )
