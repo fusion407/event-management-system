@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import BrowseEvents from "../pages/BrowseEvents";
 import NewEvent from "../pages/NewEvent";
 import ShowEvent from "../pages/ShowEvent"
+import EditEvent from "../pages/EditEvent"
 import Profile from "../pages/Profile";
 import NavBar from "./NavBar";
 import Home from "../pages/Home";
@@ -12,6 +13,7 @@ import Home from "../pages/Home";
 function App() {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
+  const [selectedEvent, setSelectedEvent] = useState()
 
   useEffect(() => {
     // auto-login
@@ -39,9 +41,13 @@ function App() {
             <Route path="/events/new">
               <NewEvent user={user} onAddEvent={(e) => setEvents([...events, e])}/>
             </Route>
-            <Route path="/events/:id">
-              <ShowEvent />
+            <Route path="/events/:id/edit">
+              <EditEvent selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} events={events} setEvents={setEvents}/>
             </Route>
+            <Route path="/events/:id">
+              <ShowEvent selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent}/>
+            </Route>
+
             <Route path="/profile">
               <Profile user={user}/>
             </Route>
