@@ -4,6 +4,7 @@ import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import BrowseEvents from "../pages/BrowseEvents";
 import NewEvent from "../pages/NewEvent";
+import ShowEvent from "../pages/ShowEvent"
 import Profile from "../pages/Profile";
 import NavBar from "./NavBar";
 import Home from "../pages/Home";
@@ -38,12 +39,16 @@ function App() {
             <Route path="/events/new">
               <NewEvent user={user} onAddEvent={(e) => setEvents([...events, e])}/>
             </Route>
+            <Route path="/events/:id">
+              <ShowEvent />
+            </Route>
             <Route path="/profile">
               <Profile user={user}/>
             </Route>
             <Route path="/events">
               <BrowseEvents user={user} events={events}/>
             </Route>
+
             <Route path="/">
               <Home user={user}/>
             </Route>
