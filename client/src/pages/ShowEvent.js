@@ -1,8 +1,9 @@
 import {useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import ShowEventItem from '../components/ShowEventItem'
+import EventsRegistrationItem from '../components/EventsRegistrationItem'
 
-function ShowEvent({selectedEvent, setSelectedEvent, onRegisterEvent}) {
+function ShowEvent({selectedEvent, setSelectedEvent, onRegisterEvent, registrations, setRegistrations}) {
     const params = useParams();
 
     useEffect(() => {
@@ -13,9 +14,12 @@ function ShowEvent({selectedEvent, setSelectedEvent, onRegisterEvent}) {
         });
       }, []);    
 
-
     return(
-        <div>{selectedEvent ? <ShowEventItem selectedEvent={selectedEvent} onRegisterEvent={onRegisterEvent}/> : "loading..."}</div>
+        <div>
+            <div>
+                {selectedEvent ? <ShowEventItem selectedEvent={selectedEvent} onRegisterEvent={onRegisterEvent}/> : "loading..."}
+            </div>
+        </div>
     )
 }
 

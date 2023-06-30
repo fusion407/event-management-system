@@ -13,6 +13,7 @@ import Home from "../pages/Home";
 function App() {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
+  const [myRegs, setMyRegs] = useState();
   const [errors, setErrors] = useState();
   const [selectedEvent, setSelectedEvent] = useState()
   const [newRegistration, setNewRegistration] = useState()
@@ -25,11 +26,21 @@ function App() {
       }
     });
   }, []);
+
   useEffect(() => {
     // load events
     fetch("/events").then((r) => {
       if (r.ok) {
         r.json().then((event) => setEvents(event));
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    // load registrations
+    fetch(`/me/registrations`).then((r) => {
+      if (r.ok) {
+        r.json().then((reg) => setMyRegs(reg));
       }
     });
   }, []);
@@ -47,7 +58,7 @@ function App() {
      }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((reg) => setNewRegistration(reg));
+        r.json().then((reg) => setMyRegs([...myRegs, reg]));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -63,14 +74,27 @@ function App() {
               <NewEvent user={user} onAddEvent={(e) => setEvents([...events, e])}/>
             </Route>
             <Route path="/events/:id/edit">
-              <EditEvent selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} events={events} setEvents={setEvents}/>
+              <EditEvent 
+                selectedEvent={selectedEvent} 
+                setSelectedEvent={setSelectedEvent} 
+                events={events} 
+                setEvents={setEvents}
+              />
             </Route>
             <Route path="/events/:id">
-              <ShowEvent onRegisterEvent={onRegisterEvent} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent}/>
+              <ShowEvent 
+                onRegisterEvent={onRegisterEvent} 
+                selectedEvent={selectedEvent} 
+                setSelectedEvent={setSelectedEvent}
+              />
             </Route>
 
             <Route path="/profile">
-              <Profile user={user}/>
+              <Profile 
+                user={user}
+                myRegs={myRegs}
+                setMyRegs={setMyRegs}
+              />
             </Route>
             <Route path="/events">
               <BrowseEvents user={user} events={events}/>

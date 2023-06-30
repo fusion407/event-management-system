@@ -16,6 +16,10 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def showMyRegs
+      regs = User.find_by(id: session[:user_id]).registrations
+      render json: regs
+    end
 
     private
   
