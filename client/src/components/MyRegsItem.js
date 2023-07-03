@@ -1,4 +1,9 @@
+import { useState } from 'react'
+
 function MyRegsItem(props) {
+    const [errors, setErrors] = useState();
+
+
     const {
         id,
         title,
@@ -7,15 +12,27 @@ function MyRegsItem(props) {
         start_date,
         end_date,
         created_by,
-        time_registered
+        time_registered,
+        myRegs,
+        setMyRegs,
+        // onDeleteRegister
     } = props
 
-    function handleUnregister(e) {
-        e.preventDefault()
-        console.log("un-registered")
-        console.log("removed: " + title)
-    }
+    function onDeleteRegister() {
+        setMyRegs((myRegs) =>
+          myRegs.filter((reg) => reg.id !== id)
+        );
+      }
 
+    function handleUnregister() {
+        fetch(`/registrations/${id}`, {
+          method: "DELETE",
+        }).then((r) => {
+          if (r.ok) {
+            onDeleteRegister();
+          }
+        });
+      }
     return(
         <div>
             <h3>{title}</h3>

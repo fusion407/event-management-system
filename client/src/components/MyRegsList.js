@@ -13,6 +13,7 @@ function MyRegsList({myRegs, setMyRegs}) {
             end_date={reg.event.end_date}
             created_by={reg.event.created_by}
             time_registered={reg.created_at}
+            setMyRegs={setMyRegs}
         />
     )
     

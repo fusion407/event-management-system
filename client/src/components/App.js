@@ -62,9 +62,15 @@ function App() {
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
-    });  }
-  console.log(newRegistration)
-  return (
+    });  
+  }
+
+
+  
+
+
+
+    return (
     <>
       <NavBar user={user} setUser={setUser} />
       <main>
@@ -94,6 +100,7 @@ function App() {
                 user={user}
                 myRegs={myRegs}
                 setMyRegs={setMyRegs}
+                // onDeleteRegister={onDeleteRegister}
               />
             </Route>
             <Route path="/events">

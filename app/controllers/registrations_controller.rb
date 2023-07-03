@@ -8,6 +8,11 @@ class RegistrationsController < ApplicationController
         render json: registration, status: :created
     end
 
+    def destroy
+        registration = Registration.find_by(id: params[:id])
+        registration.destroy
+        head :no_content
+    end
 
     private
 
