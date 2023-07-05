@@ -5,7 +5,7 @@ function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState(false);
   let history = useHistory();
 
@@ -63,7 +63,7 @@ function SignUpForm({ onLogin }) {
         />
         <button type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
         <div>
-            
+            {errors ? alert(errors) : ""}
         </div>
     </form>
   );

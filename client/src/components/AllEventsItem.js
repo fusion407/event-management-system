@@ -16,9 +16,9 @@ function AllEventsItem(props) {
     return(
         <div className="allEventsCard">
             <h1>{title}</h1>
-            <p>{description}</p>
-            <p>{location}</p>
-            <p>{start_date} - {end_date}</p>
+            <p>Description: {description}</p>
+            <p>Location: {location}</p>
+            <p>Date: {start_date} - {end_date}</p>
             <p>Event created by: {created_by}</p>
             <div>
                 <Link to={`/events/${id}`}>View Event</Link>

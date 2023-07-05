@@ -10,13 +10,12 @@ import Profile from "../pages/Profile";
 import NavBar from "./NavBar";
 import Home from "../pages/Home";
 
+
 function App() {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
   const [myRegs, setMyRegs] = useState();
-  const [errors, setErrors] = useState();
   const [selectedEvent, setSelectedEvent] = useState()
-  const [newRegistration, setNewRegistration] = useState()
 
   useEffect(() => {
     // auto-login
@@ -28,47 +27,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // load events
+    // load event data
     fetch("/events").then((r) => {
       if (r.ok) {
         r.json().then((event) => setEvents(event));
       }
     });
   }, []);
-
-  useEffect(() => {
-    // load registrations
-    fetch(`/me/registrations`).then((r) => {
-      if (r.ok) {
-        r.json().then((reg) => setMyRegs(reg));
-      }
-    });
-  }, []);
-
-  function onRegisterEvent(e) {
-    e.preventDefault()
-    fetch("/registrations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ 
-        user_id: user.id, 
-        event_id: selectedEvent.id,
-     }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((reg) => setMyRegs([...myRegs, reg]));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });  
-  }
-
-
-  
-
-
 
     return (
     <>
@@ -89,7 +54,9 @@ function App() {
             </Route>
             <Route path="/events/:id">
               <ShowEvent 
-                onRegisterEvent={onRegisterEvent} 
+                user={user}
+                myRegs={myRegs}
+                setMyRegs={setMyRegs}
                 selectedEvent={selectedEvent} 
                 setSelectedEvent={setSelectedEvent}
               />
@@ -100,11 +67,12 @@ function App() {
                 user={user}
                 myRegs={myRegs}
                 setMyRegs={setMyRegs}
-                // onDeleteRegister={onDeleteRegister}
               />
             </Route>
             <Route path="/events">
-              <BrowseEvents user={user} events={events}/>
+              <BrowseEvents 
+                user={user} 
+                events={events}/>
             </Route>
 
             <Route path="/">

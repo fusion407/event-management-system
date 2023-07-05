@@ -2,9 +2,12 @@ import {useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import ShowEventItem from '../components/ShowEventItem'
 import EventsRegistrationItem from '../components/EventsRegistrationItem'
+import { useHistory } from "react-router-dom";
 
-function ShowEvent({selectedEvent, setSelectedEvent, onRegisterEvent, registrations, setRegistrations}) {
+function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRegs, setMyRegs}) {
     const params = useParams();
+    const [errors, setErrors] = useState();
+    const history = useHistory();
 
     useEffect(() => {
         fetch(`/events/${params.id}`).then((r) => {
@@ -14,11 +17,33 @@ function ShowEvent({selectedEvent, setSelectedEvent, onRegisterEvent, registrati
         });
       }, []);    
 
+      function onRegisterEvent(e) {
+        e.preventDefault()
+        fetch("/registrations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            user_id: user.id, 
+            event_id: selectedEvent.id,
+         }),
+        }).then((r) => {
+          if (r.ok) {
+            r.json().then((reg) => setMyRegs([...myRegs, reg]));
+            history.push(`/events`);
+          } else {
+            r.json().then((err) => setErrors(err.errors));
+          }
+        });  
+      }
+
     return(
         <div>
             <div>
                 {selectedEvent ? <ShowEventItem selectedEvent={selectedEvent} onRegisterEvent={onRegisterEvent}/> : "loading..."}
             </div>
+            <div>{errors ? errors : ""}</div>
         </div>
     )
 }

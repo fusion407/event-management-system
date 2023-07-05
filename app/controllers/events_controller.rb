@@ -12,28 +12,32 @@ class EventsController < ApplicationController
     end
 
     def show
-        event = Event.find_by(id: params[:id])
+        event = find_event
         render json: event, include: [:registrations]
     end
 
     def showEventsRegistrations
-        registrations = Event.find_by(id: params[:id]).registrations
+        registrations = find_event.registrations
         render json: registrations
     end
 
     def update
-        event = Event.find_by(id: params[:id])
+        event = find_event
         event.update(event_params)
         render json: event, status: :accepted
     end
 
     def destroy
-        event = Event.find_by(id: params[:id])
+        event = find_event
         event.destroy
         head :no_content
     end
 
     private
+
+    def find_event
+        Event.find_by(id: params[:id])
+    end
 
     def event_params
         params.permit(:title, :description, :location, :start_date, :end_date, :created_by)

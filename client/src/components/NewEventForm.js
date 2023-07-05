@@ -8,7 +8,7 @@ function NewEventForm({user, onAddEvent}) {
     const [end_date, setEndDate] = useState("")
     const [created_by, setCreatedBy] = useState(user.username)
     const [isLoading, setIsLoading] = useState(false)
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState(null);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -82,6 +82,7 @@ function NewEventForm({user, onAddEvent}) {
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
             </form>
+            <div>{errors ? alert(errors) : ""}</div>
         </div>
     )
 }

@@ -36,10 +36,10 @@ function MyRegsItem(props) {
     return(
         <div>
             <h3>{title}</h3>
-            <p>{description}</p>
-            <p>{location}</p>
-            <p>{start_date} - {end_date}</p>
-            <p>Host: {created_by}</p>
+            <p>Description: {description}</p>
+            <p>Location: {location}</p>
+            <p>Date: {start_date} - {end_date}</p>
+            <p>Event created by: {created_by}</p>
             <p>Time registered: {time_registered}</p>
             <button onClick={handleUnregister}>Un-register</button>
         </div>

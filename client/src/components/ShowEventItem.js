@@ -12,13 +12,12 @@ function ShowEventItem({selectedEvent, onRegisterEvent}) {
         created_by,
     } = selectedEvent
 
-
     return(
         <div>
             <h1>{title}</h1>
-            <p>{description}</p>
-            <p>{location}</p>
-            <p>{start_date} - {end_date}</p>
+            <p>Description: {description}</p>
+            <p>Location: {location}</p>
+            <p>Date: {start_date} - {end_date}</p>
             <p>Created by: {created_by}</p>
             <div>
                 <Link to={`/events/${id}/edit`}>Edit Event</Link>

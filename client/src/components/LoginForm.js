@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   let history = useHistory();
 
@@ -24,32 +24,37 @@ function LoginForm({ onLogin }) {
         history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));
-        alert("Incorrect username or password.")
+        alert(errors)
       }
     });
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
-    </form>
+    <div>
+        <form onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <label htmlFor="username">Username</label>
+            <input
+            type="text"
+            id="username"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+        </form>
+        <div>
+            {errors ? <p>{errors}</p> : ""}
+        </div>
+    </div>
   );
 }
 
