@@ -10,7 +10,6 @@ import Profile from "../pages/Profile";
 import NavBar from "./NavBar";
 import Home from "../pages/Home";
 
-
 function App() {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
@@ -35,15 +34,22 @@ function App() {
     });
   }, []);
 
+
     return (
     <>
       <NavBar user={user} setUser={setUser} />
       <main>
         {user ? (
           <Switch>
+
             <Route path="/events/new">
-              <NewEvent user={user} onAddEvent={(e) => setEvents([...events, e])}/>
+              <NewEvent 
+                user={user} 
+                events={events}
+                setEvents={setEvents}
+              />
             </Route>
+
             <Route path="/events/:id/edit">
               <EditEvent 
                 selectedEvent={selectedEvent} 
@@ -52,6 +58,7 @@ function App() {
                 setEvents={setEvents}
               />
             </Route>
+
             <Route path="/events/:id">
               <ShowEvent 
                 user={user}
@@ -69,6 +76,7 @@ function App() {
                 setMyRegs={setMyRegs}
               />
             </Route>
+
             <Route path="/events">
               <BrowseEvents 
                 user={user} 
@@ -79,17 +87,23 @@ function App() {
               <Home user={user}/>
             </Route>
           </Switch>
+
         ) : (
+
           <Switch>
+
             <Route path="/signup">
               <SignUp setUser={setUser} />
             </Route>
+
             <Route path="/login">
               <Login setUser={setUser} />
             </Route>
+
             <Route path="/">
               <Home />
             </Route>
+            
           </Switch>
         )}
       </main>

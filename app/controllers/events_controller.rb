@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
     def show
         event = find_event
-        render json: event, include: [:registrations]
+        render json: event
     end
 
     def showEventsRegistrations

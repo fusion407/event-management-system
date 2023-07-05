@@ -1,14 +1,21 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
-function NewEventForm({user, onAddEvent}) {
+function NewEventForm({user, events, setEvents}) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
     const [start_date, setStartDate] = useState("")
     const [end_date, setEndDate] = useState("")
-    const [created_by, setCreatedBy] = useState(user.username)
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState(null);
+    let history = useHistory ();
+
+    function handleAddEvent(e) {
+        setEvents([...events, e])
+        history.push(`/events/`)
+        alert("Successfully added new event!")
+      }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -24,12 +31,12 @@ function NewEventForm({user, onAddEvent}) {
             location,
             start_date,
             end_date,
-            created_by
+            created_by : user.username
          }),
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((event) => onAddEvent(event));
+            r.json().then((event) => handleAddEvent(event));
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
@@ -82,7 +89,7 @@ function NewEventForm({user, onAddEvent}) {
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
             </form>
-            <div>{errors ? alert(errors) : ""}</div>
+            <div>{errors ? " - " + errors : ""}</div>
         </div>
     )
 }

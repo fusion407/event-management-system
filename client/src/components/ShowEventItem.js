@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ShowEventsPeople from "./ShowEventsPeople";
 
 function ShowEventItem({selectedEvent, onRegisterEvent}) {
 
@@ -10,8 +11,18 @@ function ShowEventItem({selectedEvent, onRegisterEvent}) {
         start_date,
         end_date,
         created_by,
+        users
     } = selectedEvent
 
+    const eventsPeopleList = users.map((user) =>
+    <ShowEventsPeople
+        key={user.id}
+        id={user.id}
+        username={user.username}
+    />
+)
+    
+    
     return(
         <div>
             <h1>{title}</h1>
@@ -19,6 +30,7 @@ function ShowEventItem({selectedEvent, onRegisterEvent}) {
             <p>Location: {location}</p>
             <p>Date: {start_date} - {end_date}</p>
             <p>Created by: {created_by}</p>
+            <p>People going: </p>{eventsPeopleList}
             <div>
                 <Link to={`/events/${id}/edit`}>Edit Event</Link>
             </div>

@@ -23,8 +23,7 @@ function LoginForm({ onLogin }) {
         r.json().then((user) => onLogin(user));
         history.push("/");
       } else {
-        r.json().then((err) => setErrors(err.errors));
-        alert(errors)
+        r.json().then((err) => setErrors(err.error));
       }
     });
   }

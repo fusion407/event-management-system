@@ -16,7 +16,6 @@ function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRe
           }
         });
       }, []);    
-
       function onRegisterEvent(e) {
         e.preventDefault()
         fetch("/registrations", {

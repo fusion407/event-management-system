@@ -29,7 +29,7 @@ function SignUpForm({ onLogin }) {
         r.json().then((user) => onLogin(user));
         history.push("/");
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(err.error));
       }
     });
   }
@@ -63,7 +63,7 @@ function SignUpForm({ onLogin }) {
         />
         <button type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
         <div>
-            {errors ? alert(errors) : ""}
+            {errors ? errors : ""}
         </div>
     </form>
   );
