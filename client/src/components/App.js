@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch ,Route } from 'react-router-dom';
+import { Routes ,Route } from 'react-router-dom';
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import BrowseEvents from "../pages/BrowseEvents";
@@ -7,8 +7,8 @@ import NewEvent from "../pages/NewEvent";
 import ShowEvent from "../pages/ShowEvent"
 import EditEvent from "../pages/EditEvent"
 import Profile from "../pages/Profile";
-import NavBar from "./NavBar";
 import Home from "../pages/Home";
+import NavBar from "./NavBar";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,71 +40,60 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       <main>
         {user ? (
-          <Switch>
+          <Routes>
 
-            <Route path="/events/new">
-              <NewEvent 
+            <Route path="/events/new" element={      <NewEvent 
                 user={user} 
                 events={events}
                 setEvents={setEvents}
-              />
-            </Route>
+              />}/>
 
-            <Route path="/events/:id/edit">
-              <EditEvent 
-                selectedEvent={selectedEvent} 
-                setSelectedEvent={setSelectedEvent} 
-                events={events} 
+
+            <Route path="/events/:id/edit" element={<EditEvent 
+                selectedEvent={user}
+                setSelectedEvent={setSelectedEvent}  
+                events={events}
                 setEvents={setEvents}
-              />
-            </Route>
+              />}/>
 
-            <Route path="/events/:id">
-              <ShowEvent 
+            <Route path="/events/:id" element={
+                <ShowEvent 
                 user={user}
                 myRegs={myRegs}
                 setMyRegs={setMyRegs}
                 selectedEvent={selectedEvent} 
                 setSelectedEvent={setSelectedEvent}
-              />
-            </Route>
+            />}/>
 
-            <Route path="/profile">
+
+
+            <Route path="/profile" element={
               <Profile 
                 user={user}
                 myRegs={myRegs}
                 setMyRegs={setMyRegs}
-              />
-            </Route>
+              />}/>
 
-            <Route path="/events">
+            <Route path="/events" element={
               <BrowseEvents 
                 user={user} 
-                events={events}/>
-            </Route>
+                events={events}
+              />}/>
 
-            <Route path="/">
-              <Home user={user}/>
-            </Route>
-          </Switch>
+            <Route path="/" element={
+              <Home user={user}
+            />}/>
+          </Routes>
 
         ) : (
 
-          <Switch>
+          <Routes>
 
-            <Route path="/signup">
-              <SignUp setUser={setUser} />
-            </Route>
+            <Route path="/signup" element={<SignUp setUser={setUser} />}/>
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/" element={<Home />} />
 
-            <Route path="/login">
-              <Login setUser={setUser} />
-            </Route>
-
-            <Route path="/">
-              <Home />
-            </Route>
-            
-          </Switch>
+          </Routes>
         )}
       </main>
     </>

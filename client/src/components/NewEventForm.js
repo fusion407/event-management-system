@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function NewEventForm({user, events, setEvents}) {
     const [title, setTitle] = useState("")
@@ -9,11 +9,11 @@ function NewEventForm({user, events, setEvents}) {
     const [end_date, setEndDate] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState(null);
-    let history = useHistory ();
+    let navigate = useNavigate ();
 
     function handleAddEvent(e) {
         setEvents([...events, e])
-        history.push(`/events/`)
+        navigate(`/events/`)
         alert("Successfully added new event!")
       }
 

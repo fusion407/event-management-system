@@ -35,6 +35,8 @@ function ShowEventItem({selectedEvent, onRegisterEvent}) {
                 <Link to={`/events/${id}/edit`}>Edit Event</Link>
             </div>
             <div>
+                <label htmlFor="participants"># of participants: </label>
+                <input type="text" id="participants" name="participants"/>
                 <button onClick={onRegisterEvent}>Register</button>
             </div>
         </div>

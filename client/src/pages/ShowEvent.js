@@ -2,12 +2,12 @@ import {useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import ShowEventItem from '../components/ShowEventItem'
 import EventsRegistrationItem from '../components/EventsRegistrationItem'
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRegs, setMyRegs}) {
     const params = useParams();
     const [errors, setErrors] = useState();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`/events/${params.id}`).then((r) => {
@@ -30,7 +30,7 @@ function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRe
         }).then((r) => {
           if (r.ok) {
             r.json().then((reg) => setMyRegs([...myRegs, reg]));
-            history.push(`/events`);
+            navigate(`/events`);
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
