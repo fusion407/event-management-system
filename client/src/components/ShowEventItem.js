@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ShowEventsPeople from "./ShowEventsPeople";
 
-function ShowEventItem({selectedEvent, onRegisterEvent}) {
+function ShowEventItem({selectedEvent, onRegisterEvent, participants, setParticipants}) {
 
     const {
         id,
@@ -36,7 +36,7 @@ function ShowEventItem({selectedEvent, onRegisterEvent}) {
             </div>
             <div>
                 <label htmlFor="participants"># of participants: </label>
-                <input type="text" id="participants" name="participants"/>
+                <input type="text" id="participants" name="participants" value={participants} onChange={(e) => setParticipants(e.target.value)}/>
                 <button onClick={onRegisterEvent}>Register</button>
             </div>
         </div>

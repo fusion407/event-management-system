@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRegs, setMyRegs}) {
     const params = useParams();
     const [errors, setErrors] = useState();
+    const [participants, setParticipants] = useState(1)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,6 +27,7 @@ function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRe
           body: JSON.stringify({ 
             user_id: user.id, 
             event_id: selectedEvent.id,
+            participants: participants
          }),
         }).then((r) => {
           if (r.ok) {
@@ -36,11 +38,18 @@ function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRe
           }
         });  
       }
+      console.log(participants)
 
     return(
         <div>
             <div>
-                {selectedEvent ? <ShowEventItem selectedEvent={selectedEvent} onRegisterEvent={onRegisterEvent}/> : "loading..."}
+                {selectedEvent ? <ShowEventItem 
+                                    selectedEvent={selectedEvent} 
+                                    onRegisterEvent={onRegisterEvent}
+                                    participants={participants}
+                                    setParticipants={setParticipants}
+                                    /> 
+                                : "loading..."}
             </div>
             <div>{errors ? errors : ""}</div>
         </div>

@@ -1,15 +1,7 @@
 import MyRegsList from "../components/MyRegsList";
-import {useEffect} from 'react'
 
 function Profile({ user, myRegs, setMyRegs }) {
-    useEffect(() => {
-        // load registrations
-        fetch(`/me/registrations`).then((r) => {
-          if (r.ok) {
-            r.json().then((reg) => setMyRegs(reg));
-          }
-        });
-      }, []);
+
     
     return(
         <div>

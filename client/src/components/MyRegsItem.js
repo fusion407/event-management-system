@@ -15,7 +15,6 @@ function MyRegsItem(props) {
         setMyRegs,
         // onDeleteRegister
     } = props
-    const [errors, setErrors] = useState();
     const [participantAmount, setParticipantAmount] = useState(participants)
 
 
@@ -35,24 +34,27 @@ function MyRegsItem(props) {
         });
       }
 
-    const participantInput = () => {
-        return(
-            <input 
-                type="text" 
-                id="participation" 
-                name="participation" 
-                value={participantAmount} 
-                onChange={() => setParticipantAmount}
-            />
-        )
-    }
+
     return(
         <div>
             <h3>{title}</h3>
             <p>Description: {description}</p>
             <p>Location: {location}</p>
             <p>Date: {start_date} - {end_date}</p>
-            <p>Number of invited participants: {participants ? participantInput : 1}</p>
+            <div>
+                <p>Number of participants: {participants ? 
+                    <input 
+                        type="text" 
+                        id="participation" 
+                        name="participation" 
+                        value={participantAmount} 
+                        onChange={() => setParticipantAmount}
+                    /> 
+                    
+                    : "null"}
+                    <button>Update</button>
+                </p>
+            </div>
             <p>Event created by: {created_by}</p>
             <p>Time registered: {time_registered}</p>
             <button onClick={handleUnregister}>Un-register</button>

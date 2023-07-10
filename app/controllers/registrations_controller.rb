@@ -17,6 +17,6 @@ class RegistrationsController < ApplicationController
     private
 
     def reg_params
-        params.permit(:user_id, :event_id)
+        params.permit(:user_id, :event_id, :participants)
     end
 end

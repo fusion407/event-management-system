@@ -34,7 +34,15 @@ function App() {
     });
   }, []);
 
-
+  useEffect(() => {
+    // load registrations
+    fetch(`/me/registrations`).then((r) => {
+      if (r.ok) {
+        r.json().then((reg) => setMyRegs(reg));
+      }
+    });
+  }, []);
+  
     return (
     <>
       <NavBar user={user} setUser={setUser} />
