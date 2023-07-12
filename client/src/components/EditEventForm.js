@@ -100,6 +100,7 @@ function EditEventForm({selectedEvent, setSelectedEvent, onEditEvent, events, se
             </input>   
 
             <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
+            {errors ? errors : ''}
         </form>
     )
 }

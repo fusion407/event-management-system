@@ -1,7 +1,6 @@
 import {useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import ShowEventItem from '../components/ShowEventItem'
-import EventsRegistrationItem from '../components/EventsRegistrationItem'
 import { useNavigate } from "react-router-dom";
 
 function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRegs, setMyRegs}) {

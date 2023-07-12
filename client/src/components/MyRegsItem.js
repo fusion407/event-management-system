@@ -14,7 +14,6 @@ function MyRegsItem(props) {
         participants,
         myRegs,
         setMyRegs
-        // onDeleteRegister
     } = props
     const [participantAmount, setParticipantAmount] = useState(participants)
 
