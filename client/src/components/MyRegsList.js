@@ -14,6 +14,7 @@ function MyRegsList({myRegs, setMyRegs}) {
             created_by={reg.event.created_by}
             time_registered={reg.created_at}
             participants={reg.participants}
+            myRegs={myRegs}
             setMyRegs={setMyRegs}
         />
     )

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :events
-  resources :registrations, only: [:index, :create, :destroy]
+  resources :registrations
   get "/users", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
