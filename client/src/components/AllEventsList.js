@@ -1,7 +1,7 @@
 import AllEventsItem from './AllEventsItem'
 import { useState } from 'react'
 
-function AllEventsList({user, events}) {
+function AllEventsList({user, events, setSelectedEvent}) {
     
 
     const eventsDataList = events.map((data) =>
@@ -14,6 +14,8 @@ function AllEventsList({user, events}) {
             start_date={data.start_date}
             end_date={data.end_date}
             created_by={data.created_by}
+            users={data.users}
+            setSelectedEvent={setSelectedEvent}
         />
     )
     

@@ -1,11 +1,11 @@
 import AllEventsList from "../components/AllEventsList"
 
-function BrowseEvents({ user, events }) {
+function BrowseEvents({ user, events, setSelectedEvent }) {
 
     
     return(
         <div>
-            {events ? <AllEventsList user={user} events={events} />: "Loading..."}
+            {events ? <AllEventsList user={user} events={events} setSelectedEvent={setSelectedEvent} />: "Loading..."}
         </div>
     )
   }

@@ -58,7 +58,7 @@ function App() {
 
 
             <Route path="/events/:id/edit" element={<EditEvent 
-                selectedEvent={user}
+                selectedEvent={selectedEvent}
                 setSelectedEvent={setSelectedEvent}  
                 events={events}
                 setEvents={setEvents}
@@ -86,6 +86,7 @@ function App() {
               <BrowseEvents 
                 user={user} 
                 events={events}
+                setSelectedEvent={setSelectedEvent}
               />}/>
 
             <Route path="/" element={

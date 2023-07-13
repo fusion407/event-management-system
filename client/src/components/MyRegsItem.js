@@ -17,7 +17,7 @@ function MyRegsItem(props) {
     } = props
     const [participantAmount, setParticipantAmount] = useState(participants)
 
-    function onEditRegistration(updatedReg){
+    function onUpdateRegistration(updatedReg){
       const updateRegistration = myRegs.map((reg) =>
           reg.id === updatedReg.id ? updatedReg : reg
       );
@@ -45,7 +45,7 @@ function MyRegsItem(props) {
          }),
         }).then((r) => {
           if (r.ok) {
-            r.json().then((reg) => onEditRegistration(reg));
+            r.json().then((reg) => onUpdateRegistration(reg));
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
