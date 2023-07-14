@@ -32,7 +32,7 @@ function AllEventsItem({id, title, description, location, start_date, end_date, 
    };
     
     return(
-        <div className="allEventsCard">
+        <div className="cardBoxes">
             <h1>{title}</h1>
             <p>Description: {description}</p>
             <p>Location: {location}</p>
@@ -40,7 +40,7 @@ function AllEventsItem({id, title, description, location, start_date, end_date, 
             <p>Event created by: {created_by}</p>
             <p>Users: {users.map((user) => <ShowEventsPeople key={user.id} username={user.username}/>)}</p>
             <div>
-                <Link to={`/events/${id}`} onClick={handleClickShowEvent}>View Event</Link>
+                <Link className="viewEventButton" to={`/events/${id}`} onClick={handleClickShowEvent}>View Event</Link>
             </div>
         </div>
     )

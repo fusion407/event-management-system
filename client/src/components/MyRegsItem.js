@@ -63,8 +63,8 @@ function MyRegsItem(props) {
 
 
     return(
-        <div>
-            <h3>{title}</h3>
+        <div className='cardBoxes'>
+            <h1>{title}</h1>
             <p>Description: {description}</p>
             <p>Location: {location}</p>
             <p>Date: {start_date} - {end_date}</p>
@@ -78,13 +78,13 @@ function MyRegsItem(props) {
                         onChange={(e) => setParticipantAmount(e.target.value)}
                     /> 
                     
-                    <button onClick={handleUpdate}>Update</button>
+                    <button className='viewEventButton' onClick={handleUpdate}>Update</button>
                     {errors ? errors : ''}
                 </p>
             </div>
             <p>Event created by: {created_by}</p>
             <p>Time registered: {time_registered}</p>
-            <button onClick={handleUnregister}>Un-register</button>
+            <button className='unregisterButton' onClick={handleUnregister}>Un-register</button>
         </div>
     )
 }

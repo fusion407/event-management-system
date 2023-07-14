@@ -24,7 +24,7 @@ function ShowEventItem({selectedEvent, onRegisterEvent, participants, setPartici
     
     
     return(
-        <div>
+        <div className="cardBoxes">
             <h1>{title}</h1>
             <p>Description: {description}</p>
             <p>Location: {location}</p>
@@ -32,12 +32,12 @@ function ShowEventItem({selectedEvent, onRegisterEvent, participants, setPartici
             <p>Created by: {created_by}</p>
             <p>Users: {users.map((user) => <ShowEventsPeople key={user.id} username={user.username}/>)}</p>
             <div>
-                <Link to={`/events/${id}/edit`}>Edit Event</Link>
+                <Link className='viewEventButton' to={`/events/${id}/edit`}>Edit Event</Link>
             </div>
             <div>
                 <label htmlFor="participants"># of participants: </label>
                 <input type="text" id="participants" name="participants" value={participants} onChange={(e) => setParticipants(e.target.value)}/>
-                <button onClick={onRegisterEvent}>Register</button>
+                <button className='registerEventButton' onClick={onRegisterEvent}>Register</button>
             </div>
         </div>
     )
