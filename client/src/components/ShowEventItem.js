@@ -26,11 +26,11 @@ function ShowEventItem({selectedEvent, onRegisterEvent, participants, setPartici
     return(
         <div className="cardBoxes">
             <h1>{title}</h1>
-            <p>Description: {description}</p>
-            <p>Location: {location}</p>
-            <p>Date: {start_date} - {end_date}</p>
-            <p>Created by: {created_by}</p>
-            <p>Users: {users.map((user) => <ShowEventsPeople key={user.id} username={user.username}/>)}</p>
+            <p><span>Description:</span> {description}</p>
+            <p><span>Location:</span> {location}</p>
+            <p><span>Date:</span> {start_date} - {end_date}</p>
+            <p><span>Created by:</span> {created_by}</p>
+            <p><span>Users:</span> {users.map((user) => <ShowEventsPeople key={user.id} username={user.username}/>)}</p>
             <div>
                 <Link className='viewEventButton' to={`/events/${id}/edit`}>Edit Event</Link>
             </div>

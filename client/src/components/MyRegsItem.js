@@ -65,11 +65,11 @@ function MyRegsItem(props) {
     return(
         <div className='cardBoxes'>
             <h1>{title}</h1>
-            <p>Description: {description}</p>
-            <p>Location: {location}</p>
-            <p>Date: {start_date} - {end_date}</p>
+            <p><span>Description:</span> {description}</p>
+            <p><span>Location:</span> {location}</p>
+            <p><span>Date:</span> {start_date} - {end_date}</p>
             <div>
-                <p>Number of participants:
+                <p><span>Number of Participants: </span>
                     <input 
                         type="text" 
                         id="participation" 
@@ -82,8 +82,8 @@ function MyRegsItem(props) {
                     {errors ? errors : ''}
                 </p>
             </div>
-            <p>Event created by: {created_by}</p>
-            <p>Time registered: {time_registered}</p>
+            <p><span>Created by:</span> {created_by}</p>
+            <p><span>Time registered:</span> {time_registered}</p>
             <button className='unregisterButton' onClick={handleUnregister}>Un-register</button>
         </div>
     )

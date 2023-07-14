@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+
 body {
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  background-color: rgb(228, 221, 243);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: large;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 900px;
@@ -37,12 +39,16 @@ main {
   margin: 1rem;
 }
 
+span {
+  text-decoration: underline;
+  font-weight: bold;
+}
 .cardBoxes {
   background-color: #e7fdff;
   border: 1px solid rgb(116, 114, 250);
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 60%;
   margin: 1rem auto;
   padding: 0 1rem 1rem;
 
@@ -65,7 +71,7 @@ form input {
 
 /* View Event Button */
 .viewEventButton {
-  background-color: #e1ecf4;
+  background-color: #b8e1ff;
   border-radius: 3px;
   border: 1px solid #7aa7c7;
   box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
@@ -74,15 +80,15 @@ form input {
   cursor: pointer;
   display: inline-block;
   /* font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif; */
-  font-size: 13px;
   font-weight: 400;
   line-height: 1.15385;
-  margin: 0;
+  margin-left: 1rem;
   outline: none;
   padding: 8px .8em;
   position: relative;
   text-align: center;
   text-decoration: none;
+  font-size: large;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -117,7 +123,7 @@ form input {
   cursor: pointer;
   display: inline-block;
   /* font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif; */
-  font-size: 13px;
+  font-size: large;
   font-weight: 400;
   line-height: 1.15385;
   margin: 1rem;
@@ -160,7 +166,7 @@ form input {
   cursor: pointer;
   display: inline-block;
   /* font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif; */
-  font-size: 13px;
+  font-size: large;
   font-weight: 400;
   line-height: 1.15385;
   margin: 1rem;
@@ -204,7 +210,7 @@ form button[type="submit"] {
   cursor: pointer;
   display: inline-block;
   /* font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif; */
-  font-size: 13px;
+  font-size: large;
   font-weight: 400;
   line-height: 1.15385;
   margin: 1rem;

@@ -26,7 +26,6 @@ function AllEventsItem({id, title, description, location, start_date, end_date, 
         end_date,
         created_by,
         users,
-        setSelectedEvent
        })
        navigate(`/events/${id}`)
    };
@@ -34,11 +33,11 @@ function AllEventsItem({id, title, description, location, start_date, end_date, 
     return(
         <div className="cardBoxes">
             <h1>{title}</h1>
-            <p>Description: {description}</p>
-            <p>Location: {location}</p>
-            <p>Date: {start_date} - {end_date}</p>
-            <p>Event created by: {created_by}</p>
-            <p>Users: {users.map((user) => <ShowEventsPeople key={user.id} username={user.username}/>)}</p>
+            <p><span>Description:</span> {description}</p>
+            <p><span>Location:</span> {location}</p>
+            <p><span>Date:</span> {start_date} - {end_date}</p>
+            <p><span>Created by:</span> {created_by}</p>
+            {/* <p>Users: {users.map((user) => <ShowEventsPeople key={user.id} username={user.username}/>)}</p> */}
             <div>
                 <Link className="viewEventButton" to={`/events/${id}`} onClick={handleClickShowEvent}>View Event</Link>
             </div>
