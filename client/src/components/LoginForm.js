@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Error from "../components/Error"
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState();
   const [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
 
@@ -51,7 +52,7 @@ function LoginForm({ onLogin }) {
             <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
         </form>
         <div>
-            {errors ? <p>{errors}</p> : ""}
+          {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
         </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Error from "../components/Error"
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -63,7 +64,7 @@ function SignUpForm({ onLogin }) {
         />
         <button type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
         <div>
-            {errors ? errors : ""}
+            {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
         </div>
     </form>
   );

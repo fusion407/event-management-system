@@ -79,7 +79,7 @@ function MyRegsItem(props) {
                     /> 
                     
                     <button className='viewEventButton' onClick={handleUpdate}>Update</button>
-                    {errors ? errors : ''}
+                    {errors ? <li>{errors}</li> : ''}
                 </p>
             </div>
             <p><span>Created by:</span> {created_by}</p>

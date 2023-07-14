@@ -31,9 +31,9 @@ class UsersController < ApplicationController
       params.permit(:username, :password, :password_confirmation)
     end
 
-    def authorize
-        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
-    end
+    # def authorize
+    #     return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    # end
 
   end
   
