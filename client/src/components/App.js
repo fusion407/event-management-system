@@ -25,24 +25,7 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    // load event data
-    fetch("/events").then((r) => {
-      if (r.ok) {
-        r.json().then((event) => setEvents(event));
-      }
-    });
-  }, []);
 
-  useEffect(() => {
-    // load registrations
-    fetch(`/me/registrations`).then((r) => {
-      if (r.ok) {
-        r.json().then((reg) => setMyRegs(reg));
-      }
-    });
-  }, []);
-  
     return (
     <>
       <NavBar user={user} setUser={setUser} />
@@ -50,19 +33,22 @@ function App() {
         {user ? (
           <Routes>
 
-            <Route path="/events/new" element={      <NewEvent 
+            <Route path="/events/new" element={      
+              <NewEvent 
                 user={user} 
                 events={events}
                 setEvents={setEvents}
-              />}/>
+                />}
+              />
 
-
-            <Route path="/events/:id/edit" element={<EditEvent 
+            <Route path="/events/:id/edit" element={
+              <EditEvent 
                 selectedEvent={selectedEvent}
                 setSelectedEvent={setSelectedEvent}  
                 events={events}
                 setEvents={setEvents}
-              />}/>
+                />}
+              />
 
             <Route path="/events/:id" element={
                 <ShowEvent 
@@ -71,27 +57,32 @@ function App() {
                 setMyRegs={setMyRegs}
                 selectedEvent={selectedEvent} 
                 setSelectedEvent={setSelectedEvent}
-            />}/>
-
-
+              />}
+            />
 
             <Route path="/profile" element={
               <Profile 
                 user={user}
                 myRegs={myRegs}
                 setMyRegs={setMyRegs}
-              />}/>
+              />}
+            />
 
             <Route path="/events" element={
               <BrowseEvents 
                 user={user} 
                 events={events}
+                setEvents={setEvents}
                 setSelectedEvent={setSelectedEvent}
-              />}/>
+              />}
+            />
 
             <Route path="/" element={
-              <Home user={user}
-            />}/>
+              <Home 
+                user={user}
+              />}
+            />
+
           </Routes>
 
         ) : (

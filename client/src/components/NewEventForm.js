@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Error from '../components/Error'
 
 function NewEventForm({user, events, setEvents}) {
     const [title, setTitle] = useState("")
@@ -88,8 +89,11 @@ function NewEventForm({user, events, setEvents}) {
                   onChange={(e) => setEndDate(e.target.value)}
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
+                <div>            
+                  {errors ? errors.map((error) => <Error key={error} error={error}/>) : ''}
+                </div>
             </form>
-            <div>{errors ? " - " + errors : ""}</div>
+
         </div>
     )
 }

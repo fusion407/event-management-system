@@ -1,5 +1,5 @@
 import {useState} from 'react'
-
+import Error from '../components/Error'
 
 function EditEventForm({selectedEvent, setSelectedEvent, onEditEvent, events, setEvents}) {
     const [errors, setErrors] = useState()
@@ -100,7 +100,7 @@ function EditEventForm({selectedEvent, setSelectedEvent, onEditEvent, events, se
             </input>   
 
             <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-            {errors ? errors : ''}
+            {errors ? errors.map((error) => <Error error={error}/>) : ''}
         </form>
     )
 }

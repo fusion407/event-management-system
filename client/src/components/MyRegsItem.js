@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Error from '../components/Error'
 
 function MyRegsItem(props) {
   const [errors, setErrors] = useState()
@@ -79,8 +80,10 @@ function MyRegsItem(props) {
                     /> 
                     
                     <button className='viewEventButton' onClick={handleUpdate}>Update</button>
-                    {errors ? <li>{errors}</li> : ''}
                 </p>
+                <div>
+                  {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
+                </div>
             </div>
             <p><span>Created by:</span> {created_by}</p>
             <p><span>Time registered:</span> {time_registered}</p>

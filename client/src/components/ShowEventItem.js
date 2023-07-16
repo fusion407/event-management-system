@@ -13,18 +13,10 @@ function ShowEventItem({selectedEvent, onRegisterEvent, participants, setPartici
         created_by,
         users
     } = selectedEvent
-
-//     const eventsPeopleList = users.map((user) =>
-//     <ShowEventsPeople
-//         key={user.id}
-//         id={user.id}
-//         username={user.username}
-//     />
-// )
     
     
     return(
-        <div className="cardBoxes">
+        <div>
             <h1>{title}</h1>
             <p><span>Description:</span> {description}</p>
             <p><span>Location:</span> {location}</p>

@@ -2,6 +2,7 @@ import {useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import ShowEventItem from '../components/ShowEventItem'
 import { useNavigate } from "react-router-dom";
+import Error from '../components/Error'
 
 function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRegs, setMyRegs}) {
     const {id} = useParams();
@@ -46,16 +47,16 @@ function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRe
 
     return(
         <div>
-            <div>
-                {selectedEvent ? <ShowEventItem 
+            <div className="cardBoxes">
+              {selectedEvent ? <ShowEventItem 
                                     selectedEvent={selectedEvent} 
                                     onRegisterEvent={onRegisterEvent}
                                     participants={participants}
                                     setParticipants={setParticipants}
                                     /> 
                                 : "loading..."}
+                {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
             </div>
-            <div>{errors ? errors : ""}</div>
         </div>
     )
 }
