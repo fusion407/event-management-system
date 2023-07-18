@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Error from '../components/Error'
+import { useNavigate } from 'react-router-dom'
 
 function EditEventForm({selectedEvent, setSelectedEvent, onEditEvent, events, setEvents}) {
     const [errors, setErrors] = useState()
@@ -10,7 +11,7 @@ function EditEventForm({selectedEvent, setSelectedEvent, onEditEvent, events, se
     const [location, setLocation] = useState(selectedEvent.location)
     const [start_date, setStartDate] = useState(selectedEvent.start_date)
     const [end_date, setEndDate] = useState(selectedEvent.end_date)
-
+    let navigate = useNavigate()
 
     function onEditEvent(updatedEvent){
         setSelectedEvent(updatedEvent)
@@ -18,6 +19,7 @@ function EditEventForm({selectedEvent, setSelectedEvent, onEditEvent, events, se
             event.id === updatedEvent.id ? updatedEvent : event
         );
         setEvents(updateEvent)
+        navigate(`/events/${id}`)
         alert("Event has been updated!")
     }
 

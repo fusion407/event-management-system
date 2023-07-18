@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import Error from '../components/Error'
 
 function NewEventForm({user, events, setEvents}) {
@@ -10,11 +9,9 @@ function NewEventForm({user, events, setEvents}) {
     const [end_date, setEndDate] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState(null);
-    let navigate = useNavigate ();
 
     function handleAddEvent(e) {
         setEvents([...events, e])
-        navigate(`/events/`)
         alert("Successfully added new event!")
       }
 
