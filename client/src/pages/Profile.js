@@ -1,7 +1,10 @@
 import MyRegsList from "../components/MyRegsList";
-import { useEffect } from "react"
+import { useEffect, useContext } from "react"
+import { UserContext } from '../contexts/UserContext'
 
-function Profile({ user, myRegs, setMyRegs }) {
+
+function Profile({ myRegs, setMyRegs }) {
+  const {user} = useContext(UserContext)
 
     useEffect(() => {
         // load registrations

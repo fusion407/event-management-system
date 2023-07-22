@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Error from '../components/Error'
+import { UserContext } from '../contexts/UserContext'
 
-function NewEventForm({user, events, setEvents}) {
+function NewEventForm({ events, setEvents}) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
@@ -9,6 +10,7 @@ function NewEventForm({user, events, setEvents}) {
     const [end_date, setEndDate] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState(null);
+    const {user} = useContext(UserContext)
 
     function handleAddEvent(e) {
         setEvents([...events, e])

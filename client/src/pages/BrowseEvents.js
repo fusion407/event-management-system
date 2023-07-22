@@ -1,9 +1,7 @@
 import AllEventsList from "../components/AllEventsList"
 import { useEffect } from "react"
 
-
-function BrowseEvents({ user, events, setEvents, setSelectedEvent }) {
-
+function BrowseEvents({ events, setEvents, setSelectedEvent }) {
     useEffect(() => {
         // load event data
         fetch("/events").then((r) => {
@@ -15,7 +13,7 @@ function BrowseEvents({ user, events, setEvents, setSelectedEvent }) {
     
     return(
         <div>
-            {events ? <AllEventsList user={user} events={events} setSelectedEvent={setSelectedEvent} />: "Loading..."}
+            {events ? <AllEventsList events={events} setSelectedEvent={setSelectedEvent} />: "Loading..."}
         </div>
     )
   }

@@ -1,4 +1,10 @@
-function Home({ user }) {
+import { useContext } from 'react'
+import { UserContext } from '../contexts/UserContext'
+
+function Home() {
+  const { user } = useContext(UserContext)
+
+  
   if (user) {
     return(
       <>

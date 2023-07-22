@@ -1,17 +1,18 @@
 class RegistrationsController < ApplicationController
+
     def index
         render json: Registration.all
     end
     
     def create
-        registration = Registration.create!(reg_params)
+        registration = Registration.create!(reg_params.merge(user_id: @current_user.id))
         render json: registration, status: :created
     end
 
 
     def update
         registration = find_reg
-        registration.update(reg_params)
+        registration.update(reg_params.merge(user_id: @current_user.id))
         render json: registration
     end
     
@@ -28,6 +29,6 @@ class RegistrationsController < ApplicationController
     end
 
     def reg_params
-        params.permit(:user_id, :event_id, :participants)
+        params.permit(:event_id, :participants)
     end
 end

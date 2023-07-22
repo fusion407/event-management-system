@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from '../contexts/UserContext'
 import { Routes ,Route } from 'react-router-dom';
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
@@ -11,31 +12,28 @@ import Home from "../pages/Home";
 import NavBar from "./NavBar";
 
 function App() {
-  const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
   const [myRegs, setMyRegs] = useState();
   const [selectedEvent, setSelectedEvent] = useState()
+  const {user, setUser} = useContext(UserContext)
 
-  useEffect(() => {
-    // auto-login
-    fetch("/me").then((r) => {
+
+  function handleLogout() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        setUser(null);
       }
     });
-  }, []);
-
-
+  }
     return (
     <>
-      <NavBar user={user} setUser={setUser} />
+      <NavBar handleLogout={handleLogout} />
       <main>
         {user ? (
           <Routes>
 
             <Route path="/events/new" element={      
               <NewEvent 
-                user={user} 
                 events={events}
                 setEvents={setEvents}
                 />}
@@ -52,7 +50,6 @@ function App() {
 
             <Route path="/events/:id" element={
                 <ShowEvent 
-                user={user}
                 myRegs={myRegs}
                 setMyRegs={setMyRegs}
                 selectedEvent={selectedEvent} 
@@ -62,7 +59,6 @@ function App() {
 
             <Route path="/profile" element={
               <Profile 
-                user={user}
                 myRegs={myRegs}
                 setMyRegs={setMyRegs}
               />}
@@ -70,7 +66,6 @@ function App() {
 
             <Route path="/events" element={
               <BrowseEvents 
-                user={user} 
                 events={events}
                 setEvents={setEvents}
                 setSelectedEvent={setSelectedEvent}
@@ -79,7 +74,6 @@ function App() {
 
             <Route path="/" element={
               <Home 
-                user={user}
               />}
             />
 
@@ -89,8 +83,8 @@ function App() {
 
           <Routes>
 
-            <Route path="/signup" element={<SignUp setUser={setUser} />}/>
-            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/signup" element={<SignUp  />}/>
+            <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
 
           </Routes>

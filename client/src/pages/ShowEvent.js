@@ -1,27 +1,16 @@
-import {useState, useEffect } from 'react';
+import {useState, useContext } from 'react';
 import {useParams} from 'react-router-dom';
 import ShowEventItem from '../components/ShowEventItem'
 import { useNavigate } from "react-router-dom";
 import Error from '../components/Error'
 
-function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRegs, setMyRegs}) {
+
+function ShowEvent({ selectedEvent, onRegisterEvent, myRegs, setMyRegs}) {
     const {id} = useParams();
     const [errors, setErrors] = useState();
     const [participants, setParticipants] = useState(1)
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     fetch(`/events/${id}`).then((r) => {
-    //       if (r.ok) {
-    //         r.json().then((event) => setSelectedEvent(event));
-    //       }
-    //     });
-    //   }, []);    
-    console.log(selectedEvent)
-    function handleRegisterEvent(registration) {
-     setMyRegs([...myRegs, registration])
-     setSelectedEvent(registration)
-    }
      function onRegisterEvent(e) {
        e.preventDefault()
        fetch("/registrations", {
@@ -30,8 +19,7 @@ function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRe
            "Content-Type": "application/json",
          },
          body: JSON.stringify({ 
-           user_id: user.id, 
-           event_id: selectedEvent.id,
+           event_id: id,
            participants: participants
         }),
        }).then((r) => {
@@ -43,7 +31,6 @@ function ShowEvent({user, selectedEvent, setSelectedEvent, onRegisterEvent, myRe
          }
        });  
      }
-     console.log(participants)
 
     return(
         <div>

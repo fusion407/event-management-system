@@ -1,8 +1,7 @@
 import AllEventsItem from './AllEventsItem'
-import { useState } from 'react'
 
-function AllEventsList({user, events, setSelectedEvent}) {
-    
+function AllEventsList({ events, setSelectedEvent}) {
+
 
     const eventsDataList = events.map((data) =>
         <AllEventsItem

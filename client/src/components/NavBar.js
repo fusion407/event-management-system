@@ -1,14 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from '../contexts/UserContext'
 
-function NavBar({ user, setUser }) {
-  function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {
-        setUser(null);
-      }
-    });
-  }
+function NavBar({ handleLogout }) {
+  const {user} = useContext(UserContext)
 
   return (
     <header>
@@ -21,7 +16,7 @@ function NavBar({ user, setUser }) {
         {user ? (
           <>
             <Link to="/profile">Profile</Link>
-            <button onClick={handleLogoutClick}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>

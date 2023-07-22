@@ -1,9 +1,10 @@
 import NewEventForm from "../components/NewEventForm"
 
-function NewEvent({ user, events, setEvents }) {
+function NewEvent({ events, setEvents }) {
+
     return(
         <div>
-            <NewEventForm user={user} events={events} setEvents={setEvents}/>
+            <NewEventForm events={events} setEvents={setEvents}/>
         </div>
     )
   }
