@@ -16,7 +16,7 @@ class RegistrationsController < ApplicationController
             registration.update(reg_params.merge(user_id: @current_user.id))
             render json: registration, status: :accepted
         else
-            render json: { error: 'Unathorized'}, status: :unauthorized
+            render json: { error: 'Unauthorized'}, status: :unauthorized
         end
     end
     
@@ -26,7 +26,7 @@ class RegistrationsController < ApplicationController
             registration.destroy
             head :no_content
         else
-            render json: { error: 'Unathorized'}, status: :unauthorized
+            render json: { error: 'Unauthorized'}, status: :unauthorized
         end
         
             
