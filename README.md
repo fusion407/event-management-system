@@ -30,7 +30,7 @@ Ruby can be installed with following command:
 
 $ rvm install 2.7.4 --default
 
-Install latesst version of bundler and rails:
+Install latest version of bundler and rails:
 
 $ gem install bundler
 $ gem install rails
