@@ -12,7 +12,6 @@ function AllEventsList({ events, setSelectedEvent}) {
             location={data.location}
             start_date={data.start_date}
             end_date={data.end_date}
-            created_by={data.created_by}
             users={data.users}
             setSelectedEvent={setSelectedEvent}
         />

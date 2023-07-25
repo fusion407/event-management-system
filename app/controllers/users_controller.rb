@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end
 
     def showMyRegs
-      regs = find_user.registrations
+      regs = @current_user.registrations
       render json: regs
     end
 

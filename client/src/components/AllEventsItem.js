@@ -14,7 +14,6 @@ function AllEventsItem({id, title, description, location, start_date, end_date, 
         location,
         start_date,
         end_date,
-        created_by,
         users,
        })
        navigate(`/events/${id}`)
@@ -26,7 +25,6 @@ function AllEventsItem({id, title, description, location, start_date, end_date, 
             <p><span>Description:</span> {description}</p>
             <p><span>Location:</span> {location}</p>
             <p><span>Date:</span> {start_date} - {end_date}</p>
-            <p><span>Created by:</span> {created_by}</p>
             <div>
                 <Link className="viewEventButton" to={`/events/${id}`} onClick={handleClickShowEvent}>View Event</Link>
             </div>

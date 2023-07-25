@@ -31,7 +31,6 @@ function NewEventForm({ events, setEvents}) {
             location,
             start_date,
             end_date,
-            created_by : user.username
          }),
         }).then((r) => {
           setIsLoading(false);

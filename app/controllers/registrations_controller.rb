@@ -12,14 +12,24 @@ class RegistrationsController < ApplicationController
 
     def update
         registration = find_reg
-        registration.update(reg_params.merge(user_id: @current_user.id))
-        render json: registration
+        if @current_user.id == registration.user.id
+            registration.update(reg_params.merge(user_id: @current_user.id))
+            render json: registration, status: :accepted
+        else
+            render json: { error: 'Unathorized'}, status: :unauthorized
+        end
     end
     
     def destroy
         registration = find_reg
-        registration.destroy
-        head :no_content
+        if @current_user.id == registration.user.id
+            registration.destroy
+            head :no_content
+        else
+            render json: { error: 'Unathorized'}, status: :unauthorized
+        end
+        
+            
     end
 
     private
