@@ -32,31 +32,31 @@ Ruby can be installed with following command:
 
 Install latest version of bundler and rails:
 
-$ gem install bundler
-$ gem install rails
+```$ gem install bundler```
+```$ gem install rails```
 
 Install NodeJS:
 
-$ npm i -g npm
+```$ npm i -g npm```
 
 Install Postgres:
 
-$ sudo apt update
-$ sudo apt install postgresql postgresql-contrib libpq-dev
+```$ sudo apt update```
+```$ sudo apt install postgresql postgresql-contrib libpq-dev```
 
 Run Postgres service:
 
-$ sudo service postgresql start
+```$ sudo service postgresql start```
 
 Creating database user so it can connect to rails:
 
 First check operating system username:
 
-$ whoami
+```$ whoami```
 
 You must use the same name to create Postgres user:
 
-$ sudo -u postgres -i
+```$ sudo -u postgres -i```
 
-$ createuser -sr <username>
+```$ createuser -sr <username>```
 
