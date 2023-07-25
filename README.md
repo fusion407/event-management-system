@@ -12,6 +12,12 @@ When a user registers for an event, the registration info will be displayed in t
 Link to deployment: 
 https://event-management-system-qmse.onrender.com/
 
+Blog:
+https://dev.to/fusion407/creating-an-event-manager-with-ruby-on-rails-26m2
+
+Video:
+https://youtu.be/LvWfjn7Q2KU
+
 ## Usage
 
 The following are required:
