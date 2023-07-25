@@ -28,7 +28,7 @@ The following are required:
 
 Ruby can be installed with following command:
 
-```$ rvm install 2.7.4 --default``````
+```$ rvm install 2.7.4 --default```
 
 Install latest version of bundler and rails:
 
