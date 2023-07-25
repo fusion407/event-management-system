@@ -60,3 +60,8 @@ You must use the same name to create Postgres user:
 
 ```$ createuser -sr <username>```
 
+Running rails server and react application:
+
+```$ rails s```
+```$ npm start --prefix client```
+
